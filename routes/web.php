@@ -20,12 +20,12 @@ Route::middleware('auth')->group(function () {
 /* Admin */
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('admin.login');
-    Route::post('/login', [AdminController::class, 'authenticate'])->name('admin.login.submit');
-    
-    Route::middleware('admin')->group(function () {
-        Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-        Route::get('/logout', [AdminController::class, 'logout'])->name('admin.logout');
-    });
+    Route::post('/login', [AdminController::class, 'authenticate'])->name('admin.login.submit');    
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])
+        ->middleware(\App\Http\Middleware\Admin::class)
+        ->name('admin.dashboard');
+    Route::get('/logout', [AdminController::class, 'logout'])
+        ->middleware('admin')->name('admin.logout');
 });
 
 require __DIR__.'/auth.php';
