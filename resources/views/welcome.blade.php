@@ -45,6 +45,21 @@
                                 Register
                             </a>
                         @endif
+
+                        <!-- Gym Owner Buttons -->
+                        <div class="border-l border-[#19140035] dark:border-[#3E3E3A] mx-4 h-6"></div>
+                        <a
+                            href="{{ route('gymowner.login') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] text-[#1b1b18] border border-transparent hover:border-[#19140035] dark:hover:border-[#3E3E3A] rounded-sm text-sm leading-normal"
+                        >
+                            Gym Owner Login
+                        </a>
+                        <a
+                            href="{{ route('gymowner.register') }}"
+                            class="inline-block px-5 py-1.5 dark:text-[#EDEDEC] border-[#19140035] hover:border-[#1915014a] border text-[#1b1b18] dark:border-[#3E3E3A] dark:hover:border-[#62605b] rounded-sm text-sm leading-normal"
+                        >
+                            Gym Owner Register
+                        </a>
                     @endauth
                 </nav>
             @endif

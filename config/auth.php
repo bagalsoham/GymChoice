@@ -44,6 +44,10 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
+        'gymowner' => [
+            'driver' => 'session',
+            'provider' => 'gymowners',
+        ],
     ],
 
     /*
@@ -70,7 +74,11 @@ return [
         ],
         'admins' => [
             'driver' => 'eloquent',
-            'model' => App\Models\Admin::class
+            'model' => App\Models\Admin::class,
+        ],
+        'gymowners' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\GymOwner::class,
         ],
 
         // 'users' => [
