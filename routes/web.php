@@ -30,15 +30,12 @@ Route::prefix('admin')->group(function () {
 });
 
 /* Gym Owner */
-Route::prefix('gymowner')->group(function () {
+Route::prefix('gymowner')->name('gymowner.')->group(function () {
+    Route::get('/dashboard', [GymOwnerController::class, 'dashboard'])->middleware('gymowner')->name('dashboard');
     Route::get('/login', [GymOwnerController::class, 'login'])->name('gymowner.login');
     Route::post('/login', [GymOwnerController::class, 'authenticate'])->name('gymowner.login.submit');
-    Route::get('/dashboard', [GymOwnerController::class, 'dashboard'])
-        ->middleware('gymowner')
-        ->name('gymowner.dashboard');
-    Route::get('/logout', [GymOwnerController::class, 'logout'])
-        ->middleware('gymowner')
-        ->name('gymowner.logout');
+    Route::get('/register', [GymOwnerController::class, 'register'])->name('register');
+    Route::post('/logout', [GymOwnerController::class, 'logout'])->middleware('gymowner')->name('logout');
 });
 
 require __DIR__.'/auth.php';
