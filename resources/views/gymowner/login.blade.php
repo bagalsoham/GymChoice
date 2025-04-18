@@ -14,6 +14,17 @@
                     Gym Owner Login
                 </h2>
             </div>
+
+            @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <form class="mt-8 space-y-6" action="{{ route('gymowner.login.submit') }}" method="POST">
                 @csrf
                 <div class="rounded-md shadow-sm -space-y-px">
@@ -27,20 +38,25 @@
                     </div>
                 </div>
 
-                @if ($errors->any())
-                    <div class="text-red-500">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <input id="remember_me" name="remember" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="remember_me" class="ml-2 block text-sm text-gray-900">
+                            Remember me
+                        </label>
                     </div>
-                @endif
+                </div>
 
                 <div>
                     <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         Sign in
                     </button>
+                </div>
+
+                <div class="text-center">
+                    <a href="{{ route('gymowner.register') }}" class="text-sm text-indigo-600 hover:text-indigo-500">
+                        Don't have an account? Register here
+                    </a>
                 </div>
             </form>
         </div>

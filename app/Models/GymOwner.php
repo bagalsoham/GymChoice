@@ -16,6 +16,8 @@ class GymOwner extends Authenticatable
         'name',
         'email',
         'password',
+        'phone',
+        'address',
     ];
 
     protected $hidden = [
