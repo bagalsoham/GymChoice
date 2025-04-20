@@ -16,12 +16,11 @@
                         <h1 class="text-xl font-bold">Gym Owner Dashboard</h1>
                     </div>
                     <div class="flex items-center">
-                        <form method="POST" action="{{ route('gymowner.logout') }}">
-                            @csrf
-                            <button type="submit" class="text-gray-600 hover:text-gray-900">
-                                Logout
-                            </button>
-                        </form>
+                    <form method="POST" action="{{ route('gymowner.logout') }}">
+    @csrf
+    <button type="submit">Logout</button>
+</form>
+
                     </div>
                 </div>
             </div>

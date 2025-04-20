@@ -26,7 +26,8 @@ Route::prefix('admin')->group(function () {
         ->middleware(\App\Http\Middleware\Admin::class)
         ->name('admin.dashboard');
     Route::get('/logout', [AdminController::class, 'logout'])
-        ->middleware('admin')->name('admin.logout');
+        ->middleware(\App\Http\Middleware\Admin::class)
+        ->name('admin.logout');
 });
 
 /* Gym Owner */
@@ -39,7 +40,7 @@ Route::prefix('gymowner')->group(function () {
         ->middleware(\App\Http\Middleware\GymOwner::class)
         ->name('gymowner.dashboard');
     Route::post('/logout', [GymOwnerController::class, 'logout'])
-        ->middleware('gymowner')
+        ->middleware(\App\Http\Middleware\GymOwner::class)
         ->name('gymowner.logout');
 });
 

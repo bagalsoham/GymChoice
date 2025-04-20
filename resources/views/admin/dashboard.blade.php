@@ -8,6 +8,10 @@
 <body>
     <h2>Admin dashboard</h2>
     <p>Welcome</p>
-    <a href="">Logout</a>
+    <form method="GET" action="{{ route('admin.logout') }}">
+    @csrf
+    @method('POST')
+    <button type="submit">Logout</button>
+</form>
 </body>
 </html>
