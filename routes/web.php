@@ -2,12 +2,16 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\GymOwner\GymOwnerController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/', [Controller::class, 'index'])->name('welcome');
+Route::get('/find-gym', [Controller::class, 'index2'])->name('findgym');
+Route::get('/about', [Controller::class, 'index3'])->name('about');
 
 Route::get('/dashboard', function () {
     return view('dashboard');
