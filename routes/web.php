@@ -13,6 +13,7 @@ Route::get('/', function () {
 Route::get('/', [Controller::class, 'index'])->name('welcome');
 Route::get('/find-gym', [Controller::class, 'index2'])->name('findgym');
 Route::get('/about', [Controller::class, 'index3'])->name('about');
+Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 
 // Comment out the simple dashboard route
 // Route::get('/dashboard', function () {
@@ -36,7 +37,7 @@ Route::prefix('admin')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])
         ->middleware(\App\Http\Middleware\Admin::class)
         ->name('admin.dashboard');
-    Route::get('/logout', [AdminController::class, 'logout'])
+    Route::post('/logout', [AdminController::class, 'logout'])
         ->middleware(\App\Http\Middleware\Admin::class)
         ->name('admin.logout');
 });

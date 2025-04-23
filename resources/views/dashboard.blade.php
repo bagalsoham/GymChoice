@@ -64,7 +64,7 @@
             </x-card>
             
             <x-card class="hover:shadow-lg transition-shadow duration-300">
-                <img src="https://images.unsplash.com/photo-1616279969756-33c184171548?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-48 object-cover rounded -mt-5 -mx-5 mb-4" alt="CardioFit Studio">
+                <img src="https://images.unsplash.com/photo-1571902943202-507ec2618e8f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" class="w-full h-48 object-cover rounded -mt-5 -mx-5 mb-4" alt="CardioFit Studio">
                 <h3 class="font-bold text-xl mb-2">CardioFit Studio</h3>
                 <div class="flex items-center mb-2">
                     <i class="fas fa-map-marker-alt text-red-500 mr-2"></i>
@@ -141,7 +141,7 @@
                         <div class="w-32 h-32 mb-4 overflow-hidden rounded-full border-4 border-blue-100">
                             <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Profile Photo" class="w-full h-full object-cover">
                         </div>
-                        <h3 class="text-xl font-bold mb-1">John Doe</h3>
+                        <h3 class="text-xl font-bold mb-1">Athar Gole</h3>
                         <p class="text-gray-600 mb-3">Member since 2023</p>
                         <button class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 px-4 rounded-md transition duration-300 w-full">
                             Change Photo

@@ -27,13 +27,29 @@
         } else {
             document.documentElement.classList.remove('dark');
         }
+
+        // Password toggle function
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+            input.setAttribute('type', type);
+            
+            const icon = document.querySelector(`[data-for="${inputId}"]`);
+            if (type === 'text') {
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        }
     </script>
 </head>
-<body class="h-full bg-white dark:bg-gray-900">
+<body class="h-full bg-[#f9fafb] dark:bg-gray-900 text-[#1f2937] dark:text-gray-200 font-figtree">
     <div class="flex min-h-screen flex-col md:flex-row">
 
         <!-- Left Section with Image and Welcome Text -->
-        <div class="relative flex-1 flex items-center justify-center bg-cover bg-center text-white" 
+        <div class="relative hidden md:flex flex-1 items-center justify-center bg-cover bg-center text-white" 
              style="background-image: url('{{ asset('images/gym4.jpeg') }}')">
             
             <!-- Dark overlay -->
@@ -49,27 +65,33 @@
                     </a>
                 </div>
 
-                <h1 class="text-4xl font-bold mb-4">Welcome</h1>
-                <p class="text-lg mb-4">
+                <h1 class="text-4xl font-bold mb-6">Welcome</h1>
+                <p class="text-lg mb-6">
                     FitChoice is where fitness meets flexibility! Users can find and join the best gyms with a single, flexible membership — anytime, anywhere. Gym owners can showcase their gyms, connect with fitness enthusiasts, and manage everything in one place.
                 </p>
             </div>
         </div>
 
         <!-- Right Section with Login/Register Form -->
-        <div class="flex-1 flex items-center justify-center p-4 md:p-8 bg-white dark:bg-gray-900 text-white">
+        <div class="flex-1 flex items-center justify-center p-4 md:p-8">
             <div class="w-full max-w-md">
-                <!-- Logo Again (optional) -->
-                <div class="text-center mb-6">
-                    <img src="{{ asset('images/logo.png') }}" alt="FitChoice Logo" class="h-12 mx-auto">
+                <!-- Logo for Mobile -->
+                <div class="md:hidden text-center mb-6">
+                    <a href="{{ url('/') }}" class="inline-flex items-center hover:opacity-90 transition-opacity">
+                        <img class="h-10 w-auto" src="{{ asset('images/logo.png') }}" alt="FIT CHOICE">
+                        <span class="text-xl font-bold ml-3 text-[#1f2937] dark:text-white">FIT CHOICE</span>
+                    </a>
                 </div>
 
-                <!-- Blade Section for Form Content -->
-                @yield('content')
+                <!-- Auth Card -->
+                <div class="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-8">
+                    <!-- Blade Section for Form Content -->
+                    @yield('content')
 
-                <!-- Blade Section for Auth Links (e.g. "Don't have an account?") -->
-                <div class="mt-6 text-center">
-                    @yield('auth_links')
+                    <!-- Blade Section for Auth Links -->
+                    <div class="mt-6 text-center text-sm text-gray-600 dark:text-gray-400">
+                        @yield('auth_links')
+                    </div>
                 </div>
             </div>
         </div>
