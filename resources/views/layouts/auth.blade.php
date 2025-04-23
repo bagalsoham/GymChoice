@@ -34,7 +34,7 @@
 
         <!-- Left Section with Image and Welcome Text -->
         <div class="relative flex-1 flex items-center justify-center bg-cover bg-center text-white" 
-             style="background-image: url('{{ asset('images/fitness-bg.jpg') }}')">
+             style="background-image: url('{{ asset('images/gym4.jpeg') }}')">
             
             <!-- Dark overlay -->
             <div class="absolute inset-0 bg-black bg-opacity-60"></div>
