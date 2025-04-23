@@ -2,34 +2,32 @@
 
 namespace App\Models;
 
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class GymOwner extends Authenticatable
+class GymOwner extends Model
 {
-    use HasFactory, Notifiable;
-
-    protected $guard = 'gymowner';
+    use HasFactory;
 
     protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'phone',
-        'address',
+        'user_id',
+        'business_name',
+        'contact_phone',
+        'bank_account_number',
+        'tax_id',
+        'is_verified',
     ];
 
-    protected $hidden = [
-        'password',
-        'remember_token',
+    protected $casts = [
+        'is_verified' => 'boolean',
     ];
 
-    protected function casts(): array
+    /**
+     * Get the user that owns the gym.
+     */
+    public function user(): BelongsTo
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        return $this->belongsTo(User::class);
     }
 } 

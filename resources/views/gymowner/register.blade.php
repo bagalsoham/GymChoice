@@ -29,7 +29,7 @@
                 {{ $errors->has('name') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
                 placeholder=" " required autofocus>
             <label for="name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
-                Gym Owner Name
+                Your Full Name
             </label>
         </div>
         @error('name')
@@ -37,21 +37,21 @@
         @enderror
     </div>
     
-    <!-- Gym Name -->
+    <!-- Gym/Business Name -->
     <div class="mb-5 relative">
         <div class="relative">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
                 <i class="fa-solid fa-dumbbell"></i>
             </div>
-            <input type="text" id="gym_name" name="gym_name" value="{{ old('gym_name') }}" 
+            <input type="text" id="business_name" name="business_name" value="{{ old('business_name') }}" 
                 class="w-full px-10 py-3 rounded-lg border-2 focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 text-[#1f2937] dark:text-white 
-                {{ $errors->has('gym_name') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
+                {{ $errors->has('business_name') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
                 placeholder=" " required>
-            <label for="gym_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
-                Gym Name
+            <label for="business_name" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
+                Gym/Business Name
             </label>
         </div>
-        @error('gym_name')
+        @error('business_name')
             <p class="mt-1 text-sm text-[#ef4444]">{{ $message }}</p>
         @enderror
     </div>
@@ -75,40 +75,64 @@
         @enderror
     </div>
     
-    <!-- Phone Number -->
+    <!-- Contact Phone -->
     <div class="mb-5 relative">
         <div class="relative">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
                 <i class="fa-solid fa-phone"></i>
             </div>
-            <input type="text" id="phone" name="phone" value="{{ old('phone') }}" 
+            <input type="text" id="contact_phone" name="contact_phone" value="{{ old('contact_phone') }}" 
                 class="w-full px-10 py-3 rounded-lg border-2 focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 text-[#1f2937] dark:text-white 
-                {{ $errors->has('phone') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
+                {{ $errors->has('contact_phone') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
                 placeholder=" " required>
-            <label for="phone" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
-                Phone Number
+            <label for="contact_phone" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
+                Contact Phone
             </label>
         </div>
-        @error('phone')
+        @error('contact_phone')
             <p class="mt-1 text-sm text-[#ef4444]">{{ $message }}</p>
         @enderror
     </div>
     
-    <!-- Gym Address -->
+    <!-- Bank Account Number -->
     <div class="mb-5 relative">
         <div class="relative">
             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
-                <i class="fa-solid fa-location-dot"></i>
+                <i class="fa-solid fa-university"></i>
             </div>
-            <input type="text" id="address" name="address" value="{{ old('address') }}" 
+            <input type="text" id="bank_account_number" name="bank_account_number" value="{{ old('bank_account_number') }}" 
                 class="w-full px-10 py-3 rounded-lg border-2 focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 text-[#1f2937] dark:text-white 
-                {{ $errors->has('address') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
-                placeholder=" " required>
-            <label for="address" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
-                Gym Address
+                {{ $errors->has('bank_account_number') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
+                placeholder=" " pattern="[0-9]{9,18}" title="Please enter a valid Indian bank account number (9-18 digits)">
+            <label for="bank_account_number" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
+                Bank Account Number
             </label>
         </div>
-        @error('address')
+        <p class="mt-1 text-xs text-gray-500 dark:text-gray-400">Enter your Indian bank account number (9-18 digits)</p>
+        @error('bank_account_number')
+            <p class="mt-1 text-sm text-[#ef4444]">{{ $message }}</p>
+        @enderror
+    </div>
+    
+    <!-- Tax ID -->
+    <div class="mb-5 relative">
+        <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none text-gray-500">
+                <i class="fa-solid fa-file-invoice"></i>
+            </div>
+            <input type="text" id="tax_id" name="tax_id" value="{{ old('tax_id') }}" 
+                class="w-full px-10 py-3 rounded-lg border-2 focus:outline-none focus:ring-2 bg-white dark:bg-gray-700 text-[#1f2937] dark:text-white 
+                {{ $errors->has('tax_id') ? 'border-[#ef4444] focus:border-[#ef4444] focus:ring-[#ef4444]/50' : 'border-gray-300 dark:border-gray-600 focus:border-[#6366f1] focus:ring-[#6366f1]/50' }}"
+                placeholder=" ">
+            <label for="tax_id" class="absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-2 z-10 origin-[0] bg-white dark:bg-gray-800 px-2 peer-focus:px-2 peer-placeholder-shown:scale-100 peer-placeholder-shown:-translate-y-1/2 peer-placeholder-shown:top-1/2 peer-focus:top-2 peer-focus:scale-75 peer-focus:-translate-y-4 left-8">
+                Tax ID (GST or PAN)
+            </label>
+        </div>
+        <p class="mt-1 text-xs flex justify-between">
+            <span class="text-gray-500 dark:text-gray-400">Enter GST (e.g., 22AAAAA0000A1Z5) or PAN (e.g., AAAAA0000A)</span>
+            <span class="text-gray-500 dark:text-gray-400">Optional</span>
+        </p>
+        @error('tax_id')
             <p class="mt-1 text-sm text-[#ef4444]">{{ $message }}</p>
         @enderror
     </div>
@@ -181,4 +205,26 @@
     <span>Already have an account?</span>
     <a href="{{ route('gymowner.login') }}" class="text-[#6366f1] hover:underline ml-1">Login here</a>
 </div>
-@endsection 
+@endsection
+
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Show/hide password functionality
+        window.togglePassword = function(inputId) {
+            const passwordInput = document.getElementById(inputId);
+            const icon = document.querySelector(`[data-for="${inputId}"]`);
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        };
+    });
+</script>
+@endpush 

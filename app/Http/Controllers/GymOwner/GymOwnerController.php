@@ -4,10 +4,12 @@ namespace App\Http\Controllers\GymOwner;
 
 use App\Http\Controllers\Controller;
 use App\Models\GymOwner;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
 
 class GymOwnerController extends Controller
 {
@@ -25,7 +27,17 @@ class GymOwnerController extends Controller
 
         $credentials = $request->only('email', 'password');
 
-        if (Auth::guard('gymowner')->attempt($credentials)) {
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            
+            // Check if the authenticated user is a gym owner
+            $gymOwner = GymOwner::where('user_id', $user->id)->first();
+            
+            if (!$gymOwner) {
+                Auth::logout();
+                return redirect()->back()->withErrors(['This account is not registered as a gym owner.']);
+            }
+            
             $request->session()->regenerate();
             return redirect()->route('gymowner.dashboard');
         } else {
@@ -35,12 +47,15 @@ class GymOwnerController extends Controller
 
     public function dashboard()
     {
-        return view('gymowner.dashboard');
+        $user = Auth::user();
+        $gymOwner = GymOwner::where('user_id', $user->id)->first();
+        
+        return view('gymowner.dashboard', compact('gymOwner'));
     }
 
     public function logout(Request $request)
     {
-        Auth::guard('gymowner')->logout();
+        Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
@@ -56,21 +71,34 @@ class GymOwnerController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:gym_owners'],
-            'phone' => ['required', 'string', 'max:20'],
-            'address' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'business_name' => ['required', 'string', 'max:255'],
+            'contact_phone' => ['required', 'string', 'max:20', 'regex:/^[6-9]\d{9}$/'], // Indian mobile format
+            'bank_account_number' => ['nullable', 'string', 'regex:/^[0-9]{9,18}$/'], // Indian bank account format
+            'tax_id' => ['nullable', 'string', 'max:50'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
-        $gymOwner = GymOwner::create([
+        // Create the user first
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'phone' => $request->phone,
-            'address' => $request->address,
             'password' => Hash::make($request->password),
         ]);
 
-        Auth::guard('gymowner')->login($gymOwner);
+        // Then create the gym owner record
+        GymOwner::create([
+            'user_id' => $user->id,
+            'business_name' => $request->business_name,
+            'contact_phone' => $request->contact_phone,
+            'bank_account_number' => $request->bank_account_number,
+            'tax_id' => $request->tax_id,
+            'is_verified' => false,
+        ]);
+
+        event(new Registered($user));
+        
+        Auth::login($user);
 
         return redirect()->route('gymowner.dashboard');
     }
