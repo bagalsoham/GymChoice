@@ -116,6 +116,9 @@
                                 <button class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
                                     <i class="fas fa-image mr-1"></i> Update Photos
                                 </button>
+                                <a href="{{ route('gyms.create') }}" class="bg-purple-600 hover:bg-purple-700 text-white px-4 py-2 rounded-md text-sm font-medium transition duration-300">
+                                    <i class="fas fa-plus-circle mr-1"></i> Register Gym
+                                </a>
                             </div>
                         </div>
                     </div>

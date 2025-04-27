@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\GymOwner\GymOwnerController;
+use App\Http\Controllers\GymController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -54,6 +55,14 @@ Route::prefix('gymowner')->group(function () {
     Route::post('/logout', [GymOwnerController::class, 'logout'])
         ->middleware(\App\Http\Middleware\GymOwner::class)
         ->name('gymowner.logout');
+        
+    // Gym Registration Routes
+    Route::middleware(\App\Http\Middleware\GymOwner::class)->group(function () {
+        Route::get('/gyms/create', [GymController::class, 'create'])->name('gyms.create');
+        Route::post('/gyms', [GymController::class, 'store'])->name('gyms.store');
+        Route::get('/gyms/{gym}/edit', [GymController::class, 'edit'])->name('gyms.edit');
+        Route::put('/gyms/{gym}', [GymController::class, 'update'])->name('gyms.update');
+    });
 });
 
 /* User Routes - if you want to use custom controller instead of default Breeze */

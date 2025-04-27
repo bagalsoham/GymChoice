@@ -32,4 +32,9 @@ class GymOwner extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    public function hasManyGyms()
+    {
+        return $this->hasMany(Gym::class);
+    }
 } 

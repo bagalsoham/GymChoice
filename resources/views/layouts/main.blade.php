@@ -19,45 +19,93 @@
     
     <!-- Custom CSS -->
     <style>
+        :root {
+            --dark-bg: #121212;
+            --darker-bg: #0e0e18;
+            --lighter-dark: #2c2c3a;
+            --primary-purple: #8A2BE2;
+            --secondary-purple: #9B59B6;
+            --light-purple: #A569BD;
+            --text-light: #f0f0f0;
+            --text-secondary: #b3b3b3;
+            --card-bg: #23232e;
+            --border-radius: 10px;
+            --sidebar-width: 250px;
+            --transition-speed: 0.3s;
+        }
+        
         body {
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Figtree', sans-serif;
         }
         
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: var(--dark-bg);
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-purple);
+            border-radius: 4px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--secondary-purple);
+        }
+        
+        /* Sidebar styles */
         .sidebar {
-            width: 250px;
+            width: var(--sidebar-width);
             min-height: 100vh;
-            background-color: #222;
-            color: #fff;
+            background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            color: var(--text-light);
             position: fixed;
             left: 0;
             top: 0;
             z-index: 100;
-            transition: all 0.3s;
+            transition: all var(--transition-speed);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.5);
         }
         
         .sidebar-brand {
-            padding: 1rem;
+            padding: 1.2rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(138, 43, 226, 0.15);
         }
         
         .sidebar-nav {
             padding: 0;
             list-style: none;
+            margin-top: 1rem;
         }
         
         .sidebar-nav li a {
-            padding: 0.8rem 1rem;
+            padding: 0.8rem 1.2rem;
+            margin: 0.3rem 0.6rem;
             display: block;
-            color: rgba(255, 255, 255, 0.8);
+            color: var(--text-secondary);
             text-decoration: none;
-            transition: 0.3s;
+            transition: var(--transition-speed);
+            border-radius: var(--border-radius);
         }
         
         .sidebar-nav li a:hover, .sidebar-nav li a.active {
-            background-color: rgba(255, 255, 255, 0.1);
-            color: #fff;
+            background: rgba(138, 43, 226, 0.2);
+            color: var(--text-light);
+            transform: translateX(5px);
+        }
+        
+        .sidebar-nav li a.active {
+            background: linear-gradient(90deg, var(--primary-purple) 0%, rgba(138, 43, 226, 0.7) 100%);
+            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
         }
         
         .sidebar-nav li a i {
@@ -66,25 +114,110 @@
             text-align: center;
         }
         
+        /* Main content styles */
         .main-content {
-            margin-left: 250px;
+            margin-left: var(--sidebar-width);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             flex: 1;
+            background-color: var(--dark-bg);
+            transition: margin-left var(--transition-speed);
         }
         
         .dashboard-header {
-            padding: 1rem;
-            background-color: #f8f9fa;
-            border-bottom: 1px solid #dee2e6;
+            padding: 1.2rem;
+            background-color: var(--darker-bg);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
         
         .content-wrapper {
             padding: 2rem;
             flex-grow: 1;
         }
-
+        
+        /* Button styles */
+        .btn-purple {
+            background: var(--primary-purple);
+            border: none;
+            color: white;
+            border-radius: var(--border-radius);
+            transition: all 0.3s;
+        }
+        
+        .btn-purple:hover {
+            background: var(--secondary-purple);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(138, 43, 226, 0.4);
+        }
+        
+        /* Card styles */
+        .card {
+            background-color: var(--card-bg);
+            border: none;
+            border-radius: var(--border-radius);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+            margin-bottom: 1.5rem;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .card-header {
+            background: rgba(138, 43, 226, 0.1);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-light);
+            font-weight: 500;
+            border-top-left-radius: var(--border-radius);
+            border-top-right-radius: var(--border-radius);
+        }
+        
+        /* Footer styles */
+        footer {
+            background-color: var(--darker-bg) !important;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255, 255, 255, 0.05) !important;
+        }
+        
+        /* Form control styles */
+        .form-control, .form-select {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border-radius: var(--border-radius);
+        }
+        
+        .form-control:focus, .form-select:focus {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-color: var(--primary-purple);
+            box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25);
+            color: var(--text-light);
+        }
+        
+        /* Table styles */
+        .table {
+            color: var(--text-secondary);
+        }
+        
+        .table thead th {
+            background-color: rgba(138, 43, 226, 0.1);
+            color: var(--text-light);
+            border-bottom: none;
+        }
+        
+        .table tbody tr {
+            border-bottom-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .table tbody tr:hover {
+            background-color: rgba(138, 43, 226, 0.05);
+            color: var(--text-light);
+        }
+        
+        /* Responsive styles */
         @media (max-width: 768px) {
             .sidebar {
                 width: 0;
@@ -92,7 +225,7 @@
             }
             
             .sidebar.active {
-                width: 250px;
+                width: var(--sidebar-width);
                 transform: translateX(0);
             }
             
@@ -101,7 +234,7 @@
             }
             
             .main-content.sidebar-active {
-                margin-left: 250px;
+                margin-left: var(--sidebar-width);
             }
             
             .toggle-sidebar {
@@ -111,6 +244,60 @@
         
         .toggle-sidebar {
             display: none;
+            background-color: var(--primary-purple);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .toggle-sidebar:hover {
+            background-color: var(--secondary-purple);
+            transform: scale(1.1);
+        }
+        
+        /* Custom logout button */
+        .btn-logout {
+            color: var(--text-secondary);
+            transition: all 0.3s;
+            padding: 0.8rem 1.2rem;
+            margin: 0.3rem 0.6rem;
+            border-radius: var(--border-radius);
+            text-align: left;
+            width: calc(100% - 1.2rem);
+        }
+        
+        .btn-logout:hover {
+            background: rgba(255, 59, 48, 0.2);
+            color: #ff3b30;
+            transform: translateX(5px);
+        }
+        
+        .btn-logout i {
+            margin-right: 10px;
+        }
+        
+        /* Glassmorphism components */
+        .glass-card {
+            background: rgba(44, 44, 58, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Brand styling */
+        .brand-icon img {
+            filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.5));
+        }
+        
+        .brand-text h5 {
+            background: linear-gradient(90deg, #f0f0f0, #e0b0ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 600;
         }
     </style>
 
@@ -173,6 +360,9 @@
                 <li><a href="#my-gym">
                     <i class="fas fa-dumbbell"></i> My Gym
                 </a></li>
+                <li><a href="{{ route('gyms.create') }}" class="{{ request()->routeIs('gyms.create') ? 'active' : '' }}">
+                    <i class="fas fa-plus-circle"></i> Register Gym
+                </a></li>
                 <li><a href="#members">
                     <i class="fas fa-users"></i> Members
                 </a></li>
@@ -186,7 +376,7 @@
                 @auth('web')
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link text-white text-decoration-none ps-3">
+                        <button type="submit" class="btn btn-link btn-logout no-underline">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
@@ -195,7 +385,7 @@
                 @auth('admin')
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link text-white text-decoration-none ps-3">
+                        <button type="submit" class="btn btn-link btn-logout no-underline">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
@@ -204,7 +394,7 @@
                 @auth('gymowner')
                     <form method="POST" action="{{ route('gymowner.logout') }}">
                         @csrf
-                        <button type="submit" class="btn btn-link text-white text-decoration-none ps-3">
+                        <button type="submit" class="btn btn-link btn-logout no-underline">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
                     </form>
@@ -216,7 +406,7 @@
     <!-- Main Content -->
     <div class="main-content">
         <!-- Toggle Sidebar Button (Mobile) -->
-        <button class="toggle-sidebar btn btn-sm btn-dark position-fixed m-2" style="z-index: 1000; top: 0; left: 0;">
+        <button class="toggle-sidebar btn btn-sm position-fixed m-2" style="z-index: 1000; top: 0; left: 0;">
             <i class="fas fa-bars"></i>
         </button>
         
@@ -247,7 +437,7 @@
         </div>
         
         <!-- Footer -->
-        <footer class="bg-light py-3 border-top">
+        <footer class="py-3 border-top">
             <div class="container-fluid">
                 <p class="text-center mb-0">&copy; {{ date('Y') }} FitChoice. All rights reserved.</p>
             </div>
@@ -258,7 +448,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Sidebar Toggle Script -->
-    <script>
+    <!-- <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleBtn = document.querySelector('.toggle-sidebar');
             const sidebar = document.querySelector('.sidebar');
@@ -268,10 +458,15 @@
                 sidebar.classList.toggle('active');
                 mainContent.classList.toggle('sidebar-active');
             });
+            
+            // Add class to card elements for theme consistency
+            document.querySelectorAll('.card').forEach(card => {
+                card.classList.add('glass-card');
+            });
         });
-    </script>
+    </script> -->
     
     <!-- Additional Scripts -->
     @stack('scripts')
 </body>
-</html> 
+</html>
