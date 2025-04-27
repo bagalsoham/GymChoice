@@ -44,7 +44,9 @@ class GymOwnerController extends Controller
         $request->session()->invalidate();
         $request->session()->regenerateToken();
 
-        return redirect()->route('gymowner.login');
+        return $request->input('redirect') 
+            ? redirect($request->input('redirect')) 
+            : redirect()->route('welcome');
     }
 
     public function showRegistrationForm()

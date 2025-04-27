@@ -20,15 +20,15 @@
     <!-- Custom CSS -->
     <style>
         :root {
-            --dark-bg: #121212;
-            --darker-bg: #0e0e18;
-            --lighter-dark: #2c2c3a;
-            --primary-purple: #8A2BE2;
-            --secondary-purple: #9B59B6;
-            --light-purple: #A569BD;
+            --dark-bg: #111827;
+            --darker-bg: #0f172a;
+            --lighter-dark: #1f2937;
+            --primary-purple: #6B21A8;
+            --secondary-purple: #9333EA;
+            --light-purple: #A855F7;
             --text-light: #f0f0f0;
             --text-secondary: #b3b3b3;
-            --card-bg: #23232e;
+            --card-bg: #1e293b;
             --border-radius: 10px;
             --sidebar-width: 250px;
             --transition-speed: 0.3s;
@@ -65,7 +65,7 @@
         .sidebar {
             width: var(--sidebar-width);
             min-height: 100vh;
-            background: linear-gradient(180deg, var(--darker-bg) 0%, var(--dark-bg) 100%);
+            background: var(--primary-purple);
             color: var(--text-light);
             position: fixed;
             left: 0;
@@ -78,7 +78,7 @@
         .sidebar-brand {
             padding: 1.2rem;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            background: rgba(138, 43, 226, 0.15);
+            background: rgba(0, 0, 0, 0.15);
         }
         
         .sidebar-nav {
@@ -91,21 +91,21 @@
             padding: 0.8rem 1.2rem;
             margin: 0.3rem 0.6rem;
             display: block;
-            color: var(--text-secondary);
+            color: var(--text-light);
             text-decoration: none;
             transition: var(--transition-speed);
             border-radius: var(--border-radius);
         }
         
         .sidebar-nav li a:hover, .sidebar-nav li a.active {
-            background: rgba(138, 43, 226, 0.2);
-            color: var(--text-light);
+            background: var(--secondary-purple);
+            color: white;
             transform: translateX(5px);
         }
         
         .sidebar-nav li a.active {
-            background: linear-gradient(90deg, var(--primary-purple) 0%, rgba(138, 43, 226, 0.7) 100%);
-            box-shadow: 0 4px 10px rgba(138, 43, 226, 0.3);
+            background: var(--secondary-purple);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
         }
         
         .sidebar-nav li a i {
@@ -167,7 +167,7 @@
         }
         
         .card-header {
-            background: rgba(138, 43, 226, 0.1);
+            background: rgba(107, 33, 168, 0.1);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-light);
             font-weight: 500;
@@ -193,7 +193,7 @@
         .form-control:focus, .form-select:focus {
             background-color: rgba(255, 255, 255, 0.1);
             border-color: var(--primary-purple);
-            box-shadow: 0 0 0 0.25rem rgba(138, 43, 226, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(107, 33, 168, 0.25);
             color: var(--text-light);
         }
         
@@ -203,7 +203,7 @@
         }
         
         .table thead th {
-            background-color: rgba(138, 43, 226, 0.1);
+            background-color: rgba(107, 33, 168, 0.1);
             color: var(--text-light);
             border-bottom: none;
         }
@@ -213,7 +213,7 @@
         }
         
         .table tbody tr:hover {
-            background-color: rgba(138, 43, 226, 0.05);
+            background-color: rgba(107, 33, 168, 0.05);
             color: var(--text-light);
         }
         
@@ -261,7 +261,7 @@
         
         /* Custom logout button */
         .btn-logout {
-            color: var(--text-secondary);
+            color: var(--text-light);
             transition: all 0.3s;
             padding: 0.8rem 1.2rem;
             margin: 0.3rem 0.6rem;
@@ -282,7 +282,7 @@
         
         /* Glassmorphism components */
         .glass-card {
-            background: rgba(44, 44, 58, 0.7);
+            background: rgba(30, 41, 59, 0.7);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
@@ -290,14 +290,74 @@
         
         /* Brand styling */
         .brand-icon img {
-            filter: drop-shadow(0 0 5px rgba(138, 43, 226, 0.5));
+            filter: drop-shadow(0 0 5px rgba(147, 51, 234, 0.5));
         }
         
         .brand-text h5 {
-            background: linear-gradient(90deg, #f0f0f0, #e0b0ff);
+            background: linear-gradient(90deg, #f0f0f0, #d8b4fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             font-weight: 600;
+        }
+
+        /* Chart placeholders */
+        .chart-container {
+            min-height: 300px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.02);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px dashed rgba(255, 255, 255, 0.1);
+        }
+
+        /* Stats Card */
+        .stats-card {
+            display: flex;
+            align-items: center;
+        }
+        
+        .stats-card .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+        }
+        
+        .stats-card .stats-content .value {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+        
+        .stats-card .stats-content .label {
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+        }
+
+        /* Status badges */
+        .badge-success {
+            background-color: rgba(16, 185, 129, 0.2);
+            color: rgb(16, 185, 129);
+        }
+        
+        .badge-warning {
+            background-color: rgba(245, 158, 11, 0.2);
+            color: rgb(245, 158, 11);
+        }
+        
+        .badge-danger {
+            background-color: rgba(239, 68, 68, 0.2);
+            color: rgb(239, 68, 68);
+        }
+        
+        .badge-info {
+            background-color: rgba(59, 130, 246, 0.2);
+            color: rgb(59, 130, 246);
         }
     </style>
 
@@ -323,16 +383,22 @@
             @auth('web')
                 <!-- Regular User Navigation -->
                 <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <i class="fas fa-home"></i> Dashboard
+                    <i class="fas fa-home"></i> My Dashboard
                 </a></li>
-                <li><a href="#explore-gyms">
-                    <i class="fas fa-search"></i> Explore Gyms
+                <li><a href="#browse-gyms">
+                    <i class="fas fa-search"></i> Browse Gyms
                 </a></li>
-                <li><a href="#my-membership">
-                    <i class="fas fa-id-card"></i> My Membership
+                <li><a href="#my-bookings">
+                    <i class="fas fa-calendar-check"></i> My Bookings
                 </a></li>
-                <li><a href="#profile">
-                    <i class="fas fa-user"></i> Profile
+                <li><a href="#favorite-gyms">
+                    <i class="fas fa-heart"></i> Favorite Gyms
+                </a></li>
+                <li><a href="#profile-settings">
+                    <i class="fas fa-user-cog"></i> Profile Settings
+                </a></li>
+                <li><a href="#support">
+                    <i class="fas fa-headset"></i> Support
                 </a></li>
             @endauth
             
@@ -342,32 +408,50 @@
                     <i class="fas fa-tachometer-alt"></i> Dashboard
                 </a></li>
                 <li><a href="#manage-users">
-                    <i class="fas fa-users"></i> Users
+                    <i class="fas fa-users"></i> Manage Users
+                </a></li>
+                <li><a href="#manage-gym-owners">
+                    <i class="fas fa-user-tie"></i> Manage Gym Owners
+                </a></li>
+                <li><a href="#pending-gyms">
+                    <i class="fas fa-clock"></i> Pending Gym Requests
                 </a></li>
                 <li><a href="#manage-gyms">
-                    <i class="fas fa-dumbbell"></i> Gyms
+                    <i class="fas fa-dumbbell"></i> Manage Gyms
+                </a></li>
+                <li><a href="#view-bookings">
+                    <i class="fas fa-calendar-day"></i> View Bookings
+                </a></li>
+                <li><a href="#amenity-master">
+                    <i class="fas fa-list-check"></i> Amenity Master
                 </a></li>
                 <li><a href="#reports">
                     <i class="fas fa-chart-bar"></i> Reports
+                </a></li>
+                <li><a href="#settings">
+                    <i class="fas fa-cog"></i> Settings
                 </a></li>
             @endauth
             
             @auth('gymowner')
                 <!-- Gym Owner Navigation -->
                 <li><a href="{{ route('gymowner.dashboard') }}" class="{{ request()->routeIs('gymowner.dashboard') ? 'active' : '' }}">
-                    <i class="fas fa-tachometer-alt"></i> Dashboard
+                    <i class="fas fa-tachometer-alt"></i> My Dashboard
                 </a></li>
-                <li><a href="#my-gym">
-                    <i class="fas fa-dumbbell"></i> My Gym
+                <li><a href="#my-gyms">
+                    <i class="fas fa-building"></i> My Gyms
                 </a></li>
                 <li><a href="{{ route('gyms.create') }}" class="{{ request()->routeIs('gyms.create') ? 'active' : '' }}">
-                    <i class="fas fa-plus-circle"></i> Register Gym
+                    <i class="fas fa-plus-circle"></i> Add New Gym
                 </a></li>
-                <li><a href="#members">
-                    <i class="fas fa-users"></i> Members
+                <li><a href="#membership-plans">
+                    <i class="fas fa-tags"></i> My Membership Plans
                 </a></li>
-                <li><a href="#settings">
-                    <i class="fas fa-cog"></i> Settings
+                <li><a href="#my-bookings">
+                    <i class="fas fa-calendar-check"></i> My Bookings
+                </a></li>
+                <li><a href="#profile-settings">
+                    <i class="fas fa-user-cog"></i> Profile Settings
                 </a></li>
             @endauth
             
@@ -376,6 +460,7 @@
                 @auth('web')
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
+                        <input type="hidden" name="redirect" value="{{ route('welcome') }}">
                         <button type="submit" class="btn btn-link btn-logout no-underline">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
@@ -385,6 +470,7 @@
                 @auth('admin')
                     <form method="POST" action="{{ route('admin.logout') }}">
                         @csrf
+                        <input type="hidden" name="redirect" value="{{ route('welcome') }}">
                         <button type="submit" class="btn btn-link btn-logout no-underline">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
@@ -394,6 +480,7 @@
                 @auth('gymowner')
                     <form method="POST" action="{{ route('gymowner.logout') }}">
                         @csrf
+                        <input type="hidden" name="redirect" value="{{ route('welcome') }}">
                         <button type="submit" class="btn btn-link btn-logout no-underline">
                             <i class="fas fa-sign-out-alt"></i> Logout
                         </button>
@@ -414,19 +501,7 @@
         <div class="dashboard-header">
             <div class="container-fluid">
                 <h1 class="h3">
-                    @auth('web')
-                        User Dashboard
-                    @endauth
-                    
-                    @auth('admin')
-                        Admin Dashboard
-                    @endauth
-                    
-                    @auth('gymowner')
-                        Gym Owner Dashboard
-                    @endauth
-                    
-                    @yield('header', '')
+                    @yield('page-title', 'Dashboard')
                 </h1>
             </div>
         </div>
@@ -448,7 +523,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- Sidebar Toggle Script -->
-    <!-- <script>
+    <script>
         document.addEventListener('DOMContentLoaded', function() {
             const toggleBtn = document.querySelector('.toggle-sidebar');
             const sidebar = document.querySelector('.sidebar');
@@ -464,7 +539,7 @@
                 card.classList.add('glass-card');
             });
         });
-    </script> -->
+    </script>
     
     <!-- Additional Scripts -->
     @stack('scripts')

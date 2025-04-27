@@ -22,7 +22,7 @@ class UserController extends Controller
             return redirect()->route('login');
         }
         
-        return view('dashboard');
+        return view('user.dashboard');
     }
 
     public function logout(Request $request)

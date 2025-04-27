@@ -9,6 +9,17 @@ class Controller
         return view('welcome');
     }
     
+    public function handleRootPost()
+    {
+        // Process the POST request data
+        $data = request()->all();
+        
+        // Perform any necessary validation or processing
+        
+        // Redirect back to welcome page with success message
+        return redirect()->route('welcome')->with('success', 'Form submitted successfully');
+    }
+    
     public function index2()
     {
         // Get the search parameter from the request
