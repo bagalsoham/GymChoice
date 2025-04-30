@@ -16,12 +16,6 @@ Route::get('/find-gym', [Controller::class, 'index2'])->name('findgym');
 Route::get('/about', [Controller::class, 'index3'])->name('about');
 Route::get('/contact', [Controller::class, 'contact'])->name('contact');
 
-// Comment out the simple dashboard route
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
-
-// Use the UserController for dashboard instead
 Route::get('/dashboard', [UserController::class, 'dashboard'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
@@ -31,6 +25,17 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 }); 
+
+// User Routes
+Route::prefix('user')->middleware(['auth:web'])->group(function() {
+    Route::view('/dashboard', 'user.dashboard')->name('user.dashboard');
+    Route::view('/browse-gyms', 'user.browse-gyms')->name('user.browse-gyms');
+    Route::view('/my-bookings', 'user.my-bookings')->name('user.my-bookings');
+    Route::view('/favorite-gyms', 'user.favorite-gyms')->name('user.favorite-gyms');
+    Route::view('/profile-settings', 'user.profile-settings')->name('user.profile-settings');
+    Route::view('/support', 'user.support')->name('user.support');
+});
+
 /* Admin */
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'login'])->name('admin.login');

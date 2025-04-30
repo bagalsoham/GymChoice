@@ -380,27 +380,45 @@
         </div>
         
         <ul class="sidebar-nav">
-            @auth('web')
-                <!-- Regular User Navigation -->
-                <li><a href="{{ route('dashboard') }}" class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">
-                    <i class="fas fa-home"></i> My Dashboard
-                </a></li>
-                <li><a href="#browse-gyms">
-                    <i class="fas fa-search"></i> Browse Gyms
-                </a></li>
-                <li><a href="#my-bookings">
-                    <i class="fas fa-calendar-check"></i> My Bookings
-                </a></li>
-                <li><a href="#favorite-gyms">
-                    <i class="fas fa-heart"></i> Favorite Gyms
-                </a></li>
-                <li><a href="#profile-settings">
-                    <i class="fas fa-user-cog"></i> Profile Settings
-                </a></li>
-                <li><a href="#support">
-                    <i class="fas fa-headset"></i> Support
-                </a></li>
-            @endauth
+        @auth('web')
+    <!-- Regular User Navigation -->
+    <li>
+        <a href="{{ route('user.dashboard') }}" class="{{ request()->routeIs('user.dashboard') ? 'active' : '' }}">
+            <i class="fas fa-home"></i> My Dashboard
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('user.browse-gyms') }}" class="{{ request()->routeIs('user.browse-gyms') ? 'active' : '' }}">
+            <i class="fas fa-search"></i> Browse Gyms
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('user.my-bookings') }}" class="{{ request()->routeIs('user.my-bookings') ? 'active' : '' }}">
+            <i class="fas fa-calendar-check"></i> My Bookings
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('user.favorite-gyms') }}" class="{{ request()->routeIs('user.favorite-gyms') ? 'active' : '' }}">
+            <i class="fas fa-heart"></i> Favorite Gyms
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('user.profile-settings') }}" class="{{ request()->routeIs('user.profile-settings') ? 'active' : '' }}">
+            <i class="fas fa-user-cog"></i> Profile Settings
+        </a>
+    </li>
+
+    <li>
+        <a href="{{ route('user.support') }}" class="{{ request()->routeIs('user.support') ? 'active' : '' }}">
+            <i class="fas fa-headset"></i> Support
+        </a>
+    </li>
+@endauth
+
             
             @auth('admin')
                 <!-- Admin Navigation -->
